@@ -1,0 +1,5 @@
+export const folder = '/folders/'
+export const task = '/tasks/'
+export const tree = '/folders/tree'
+export const rcloneList = '/rclone/list'
+export const info = '/info/'

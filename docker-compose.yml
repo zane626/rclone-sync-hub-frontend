@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  frontend:
+    image: rclone-sync-hub-frontend:1.0.0
+    ports:
+      - "8080:80"
+    environment:
+      - API_URL=http://localhost:5001  # 默认API地址，可通过环境变量覆盖
+    restart: unless-stopped

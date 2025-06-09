@@ -1,0 +1,28 @@
+{
+  "name": "rclone-sync-hub-frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.3.1",
+    "axios": "^1.9.0",
+    "dayjs": "^1.11.13",
+    "element-plus": "^2.10.1",
+    "lodash": "^4.17.21",
+    "sass": "^1.89.1",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.3",
+    "@vitejs/plugin-vue-jsx": "^4.2.0",
+    "unplugin-vue-components": "^28.7.0",
+    "vite": "^6.3.5",
+    "vite-plugin-windicss": "^1.9.4"
+  }
+}
