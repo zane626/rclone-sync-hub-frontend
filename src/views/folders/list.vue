@@ -93,7 +93,7 @@ const {
   handleQuery,
 } = useListPage({
   listFetch: api.getFolderList,
-  deleteFetch: api.deleteFetch,
+  deleteFetch: api.deleteFolder,
 })
 
 const dialogVisible = ref(false)

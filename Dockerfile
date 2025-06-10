@@ -1,12 +1,14 @@
 # Build stage
-FROM node:20-alpine AS build-stage
+FROM docker.1ms.run/node:20-alpine AS build-stage
 
 WORKDIR /app
 COPY package*.json ./
 COPY pnpm-lock.yaml ./
 
 # Install pnpm
-RUN npm install -g pnpm
+RUN npm install -g pnpm nrm
+
+RUN nrm use taobao
 
 # Install dependencies
 RUN pnpm install
@@ -15,10 +17,10 @@ RUN pnpm install
 COPY . .
 
 # Build the project
-RUN npm build
+RUN npm run build
 
 # Production stage
-FROM nginx:stable-perl AS production-stage
+FROM docker.1ms.run/nginx:latest AS production-stage
 
 # Copy built files
 COPY --from=build-stage /app/dist /usr/share/nginx/html

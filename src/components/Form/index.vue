@@ -44,7 +44,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import SelectDir from './SelectDir.vue'
+import SelectDir from './selectDir.vue'
 
 const props = defineProps({
   formItems: {

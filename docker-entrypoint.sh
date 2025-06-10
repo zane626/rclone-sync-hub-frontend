@@ -4,6 +4,7 @@
 if [ ! -z "$API_URL" ]; then
     echo "Configuring API URL to: $API_URL"
     sed -i "s|\${API_URL}|$API_URL|g" /etc/nginx/conf.d/default.conf
+fi
 
 # Execute CMD
 exec "$@"
