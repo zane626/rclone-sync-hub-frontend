@@ -8,7 +8,9 @@
     </div>
 
     <el-card class="task-table-card">
-      <el-table :data="dataList" style="width: 100%" v-loading="loading">
+      <el-button type="primary" :disabled="selected.length === 0" @click="handleDeleteMultiple">批量删除</el-button>
+      <el-table :data="dataList" style="width: 100%" v-loading="loading" @selection-change="handleSelectionChange">
+        <el-table-column type="selection" width="55" />
         <el-table-column prop="name" label="文件夹"/>
         <el-table-column prop="fileName" label="文件名称" width="150"/>
         <el-table-column prop="localPath" label="文件路径" width="140"/>
@@ -56,6 +58,7 @@
             <el-space>
               <el-button type="text" @click="showLog(row)">查看</el-button>
               <!--<el-button type="text" @click="reset(row)">重试</el-button>-->
+              <el-button type="danger" @click="handleDelete(row)">删除</el-button>
             </el-space>
           </template>
         </el-table-column>
@@ -93,12 +96,14 @@ const {
   pageSize,
   total,
   // 方法
+  fetchList,
   handleSizeChange,
   handleCurrentChange,
   handleDelete,
   handleQuery,
 } = useListPage({
   listFetch: api.getTaskList,
+  deleteFetch: api.deleteTask,
 })
 
 const dialogVisible = ref(false)
@@ -115,6 +120,17 @@ function convertMiBToMB (str) {
 
 function showLog (row) {
 
+}
+
+const selected = ref([])
+function handleSelectionChange (rows) {
+  selected.value = rows
+}
+function handleDeleteMultiple () {
+  Promise.all(selected.value.map((item) => api.deleteTask(item.id))).finally(() => {
+    fetchList()
+    selected.value = []
+  })
 }
 
 function handleAdd () {

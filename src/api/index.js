@@ -29,3 +29,6 @@ export function deleteFolder (id) {
 export function getTaskList (params) {
   return service.get(api.task, { params })
 }
+export function deleteTask (id) {
+  return service.delete(api.task + id)
+}
