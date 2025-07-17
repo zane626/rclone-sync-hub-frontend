@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "docker:tag": "git tag v%npm_package_version% && git push origin v%npm_package_version%"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
