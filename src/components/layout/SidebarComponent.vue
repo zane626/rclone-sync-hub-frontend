@@ -2,7 +2,7 @@
   <el-aside width="200px" class="sidebar">
     <el-menu
       router
-      default-active="/home"
+      :default-active="$route.path"
       class="sidebar-menu"
       background-color="#304156"
       text-color="#bfcbd9"

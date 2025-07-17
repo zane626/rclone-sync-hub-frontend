@@ -129,7 +129,7 @@ export function useListPage(options) {
       }
     ).then(async () => {
       try {
-        await deleteFetch(row.id);
+        await deleteFetch(row._id || row.id);
         await fetchList();
         ElMessage.success('删除成功');
       } catch (error) {

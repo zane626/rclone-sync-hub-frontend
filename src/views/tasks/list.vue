@@ -52,7 +52,7 @@
         <el-table-column
             label="操作"
             fixed="right"
-            width="120"
+            width="140"
         >
           <template #default="{row}">
             <el-space>
@@ -85,6 +85,7 @@ import { Plus } from '@element-plus/icons-vue'
 import { useListPage } from 'hooks/listPage'
 import * as api from 'api'
 import { timeFormat } from 'common'
+import { ElMessageBox } from 'element-plus'
 
 
 // 使用列表页hooks
@@ -127,9 +128,19 @@ function handleSelectionChange (rows) {
   selected.value = rows
 }
 function handleDeleteMultiple () {
-  Promise.all(selected.value.map((item) => api.deleteTask(item.id))).finally(() => {
-    fetchList()
-    selected.value = []
+  ElMessageBox.confirm(
+      '确定要删除该记录吗?',
+      '警告',
+      {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning',
+      }
+  ).then(async () => {
+    Promise.all(selected.value.map((item) => api.deleteTask(item._id))).finally(() => {
+      fetchList()
+      selected.value = []
+    })
   })
 }
 

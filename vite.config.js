@@ -30,9 +30,11 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://rclonesync.yemianzai.com',
+        // target: 'https://rclonesync.yemianzai.com',
+        target: 'http://127.0.0.1:5001',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '/api')
+        // rewrite: (path) => path.replace(/^\/api/, '/api')
+        rewrite: (path) => path.replace(/^\/api/, '')
       }
     }
   }

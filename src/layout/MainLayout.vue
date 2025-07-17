@@ -1,7 +1,7 @@
 <template>
   <el-container class="layout-container">
     <header-component />
-    <el-container>
+    <el-container class="el-container">
       <sidebar-component />
       <el-container class="main-container">
         <el-main class="main-content">
@@ -25,7 +25,9 @@ import FooterComponent from '../components/layout/FooterComponent.vue';
   height: 100vh;
   flex-direction: column;
 }
-
+.el-container {
+  overflow: auto;
+}
 .main-container {
   display: flex;
   flex-direction: column;
