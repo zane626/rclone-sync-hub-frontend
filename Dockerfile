@@ -1,5 +1,5 @@
 # Build stage
-FROM docker.1ms.run/node:20-alpine AS build-stage
+FROM node:20-alpine AS build-stage
 
 WORKDIR /app
 COPY package*.json ./
@@ -20,7 +20,7 @@ COPY . .
 RUN npm run build
 
 # Production stage
-FROM docker.1ms.run/nginx:latest AS production-stage
+FROM nginx:latest AS production-stage
 
 # Copy built files
 COPY --from=build-stage /app/dist /usr/share/nginx/html
