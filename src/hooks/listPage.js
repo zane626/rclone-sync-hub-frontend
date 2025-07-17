@@ -37,9 +37,7 @@ export function useListPage(options) {
 
   // 查询参数
   const queryParams = reactive({
-    ...defaultQuery,
-    page: 1,
-    pageSize: 10
+    ...defaultQuery
   });
 
   // 表单数据
@@ -61,8 +59,18 @@ export function useListPage(options) {
     if (!listFetch) throw new Error('listFetch is required');
     loading.value = true;
     try {
+      const query = Object.entries(queryParams).reduce((acc, [key, value]) => {
+        if (!['', null, undefined].includes(value)) {
+          if (typeof value === 'string') {
+            acc[key] = { $regex: value.trim() }
+          } else {
+            acc[key] = value;
+          }
+        }
+        return acc;
+      }, {});
       const data = await listFetch({
-        ...queryParams,
+        query: JSON.stringify(query),
         page: currentPage.value,
         per_page: pageSize.value
       });

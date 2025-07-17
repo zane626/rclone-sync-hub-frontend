@@ -32,3 +32,7 @@ export function getTaskList (params) {
 export function deleteTask (id) {
   return service.delete(api.task + id)
 }
+
+export function updateTask (id, data) {
+  return service.put(api.task + id, data)
+}
