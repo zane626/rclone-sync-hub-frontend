@@ -160,12 +160,12 @@ const logs = ref('')
 const drawer = ref(false)
 
 function showLog (row) {
-  logs.value = row.logs
+  logs.value = row.logs || ''
   drawer.value = true
 }
 function reset (row) {
   loading.value = true
-  api.updateTask(row._id, { ...row, status: 0 }).then(() => {
+  api.updateTask(row._id, { ...row, logs: '', status: 0 }).then(() => {
     ElMessage.success('重置成功')
     fetchList()
   }).catch(() => {
