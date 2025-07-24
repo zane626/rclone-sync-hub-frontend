@@ -24,7 +24,7 @@
     </el-row>
     <el-row :gutter="24">
       <el-col :span="18">
-        <DailyStatistics></DailyStatistics>
+        <DailyStatistics ref="DailyStatisticsRef" />
       </el-col>
       <el-col :span="6">
         <el-card>
@@ -69,6 +69,7 @@ const cardField = ref([
   },
 ])
 
+const DailyStatisticsRef = ref(null)
 const dynamic = ref([])
 
 onMounted(() => {
@@ -78,6 +79,7 @@ onMounted(() => {
     cardField.value[2].num = res.toBeUploaded
     cardField.value[3].num = res.success
     dynamic.value = res.logs || []
+    DailyStatisticsRef.value.setValue(res.final_result || [])
   })
 })
 </script>

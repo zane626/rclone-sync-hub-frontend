@@ -28,13 +28,15 @@ export default defineConfig({
     },
   },
   server: {
+    host: '0.0.0.0',
+    port: 5300,
     proxy: {
       '/api': {
-        target: 'https://rclonesync.yemianzai.com',
-        // target: 'http://127.0.0.1:5001',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '/api')
-        // rewrite: (path) => path.replace(/^\/api/, '')
+        // target: 'https://rclonesync.yemianzai.com',
+        // rewrite: (path) => path.replace(/^\/api/, '/api'),
+        target: 'http://localhost:5001',
+        rewrite: (path) => path.replace(/^\/api/, ''),
+        changeOrigin: true
       }
     }
   }
