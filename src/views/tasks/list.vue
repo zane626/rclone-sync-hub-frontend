@@ -60,11 +60,7 @@
             {{ timeFormat(row.startedAt) }}
           </template>
         </el-table-column>
-        <el-table-column prop="speed" label="速度" width="120">
-          <template #default="scope">
-            {{ convertMiBToMB(scope.row.speed) }}
-          </template>
-        </el-table-column>
+        <el-table-column prop="speed" label="速度" width="120" />
         <el-table-column prop="progress" label="进度"/>
         <el-table-column prop="finishedAt" label="完成时间" width="120">
           <template #default="{row}">

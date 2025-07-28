@@ -1,7 +1,7 @@
 <template>
     <el-form ref="formRef" :model="formModel" :rules="rules" label-width="140px">
       <el-form-item
-          v-for="item in formItems"
+          v-for="item in formItemsFilter"
           :key="item.prop"
           :label="item.label"
           :prop="item.prop"
@@ -11,6 +11,7 @@
           <el-input
               v-model="formModel[item.prop]"
               :placeholder="item.placeholder"
+              @change="changeValue(item.prop, formModel[item.prop])"
           />
         </template>
 
@@ -18,6 +19,7 @@
           <el-select
               v-model="formModel[item.prop]"
               :placeholder="item.placeholder"
+              @change="changeValue(item.prop, formModel[item.prop])"
           >
             <el-option
                 v-for="option in item.options"
@@ -43,7 +45,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import SelectDir from './selectDir.vue'
 
 const props = defineProps({
@@ -65,8 +67,9 @@ const formRef = ref()
 const formModel = ref({
   ...props.initialValues
 })
+const formItemsFilter = computed(() => props.formItems.filter(item => 'isShow' in item ? item.isShow : true))
 
-const emit = defineEmits(['submit', 'cancel'])
+const emit = defineEmits(['submit', 'cancel',  'changeValue'])
 
 const handleSubmit = async () => {
   try {
@@ -84,4 +87,7 @@ const handleCancel = () => {
   emit('cancel')
 }
 
+function changeValue (prop, value) {
+  emit('changeValue', prop, value)
+}
 </script>

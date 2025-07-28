@@ -31,6 +31,12 @@ const routes = [
         name: 'Tasks',
         component: () => import('../views/tasks/list.vue'),
         meta: { title: '任务列表' }
+      },
+      {
+        path: '/origin',
+        name: 'Origin',
+        component: () => import('../views/origin/list.vue'),
+        meta: { title: 'origin' }
       }
     ]
   },

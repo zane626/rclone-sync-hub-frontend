@@ -19,6 +19,10 @@
         <el-icon><list /></el-icon>
         <span>任务列表</span>
       </el-menu-item>
+      <el-menu-item index="/origin">
+        <el-icon><list /></el-icon>
+        <span>origin</span>
+      </el-menu-item>
     </el-menu>
   </el-aside>
 </template>

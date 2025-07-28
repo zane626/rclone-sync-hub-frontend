@@ -13,7 +13,16 @@
     <el-card class="folder-table-card">
       <el-table :data="dataList" style="width: 100%" v-loading="loading">
         <el-table-column prop="name" label="名称" min-width="100"/>
-        <el-table-column prop="localPath" label="目标目录" width="200"/>
+        <el-table-column prop="syncType" label="类型" width="100">
+          <template #default="{row}">
+            {{row.syncType === 'remote' ? '云->云' : '本地->云'}}
+          </template>
+        </el-table-column>
+        <el-table-column prop="localPath" label="目标目录" width="200">
+          <template #default="{row}">
+            {{ row.syncType === 'remote' ? row.originPath : row.localPath }}
+          </template>
+        </el-table-column>
         <el-table-column prop="origin" label="源" width="200"/>
         <el-table-column prop="remotePath" label="远程目录" width="200"/>
         <el-table-column prop="uploadNum" label="已上传数量" width="120" align="center"/>

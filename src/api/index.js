@@ -36,3 +36,11 @@ export function deleteTask (id) {
 export function updateTask (id, data) {
   return service.put(api.task + id, data)
 }
+
+export function originList () {
+  return service.get(api.originList)
+}
+
+export function refreshOrigins () {
+  return service.get(api.refreshOrigins)
+}
