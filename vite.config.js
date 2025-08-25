@@ -34,8 +34,8 @@ export default defineConfig({
       '/api': {
         // target: 'https://rclonesync.yemianzai.com',
         // rewrite: (path) => path.replace(/^\/api/, '/api'),
-        target: 'http://localhost:5001',
-        rewrite: (path) => path.replace(/^\/api/, ''),
+        target: 'http://192.168.31.246:5051',
+        rewrite: (path) => path.replace(/^\/api/, '/api'),
         changeOrigin: true
       }
     }
